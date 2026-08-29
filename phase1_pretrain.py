@@ -101,10 +101,12 @@ def run(n_shards, steps, block_size, n_layer, n_head, n_embd, out_dir, log_every
     print(f"device={device}")
 
     print(f"downloading {n_shards} ClimbMix shard(s) (+1 val shard) if not already present...")
-    from nanochat.dataset import download_single_file
+    from nanochat.dataset import download_single_file, DATA_DIR, MAX_SHARD
+    import os
+    os.makedirs(DATA_DIR, exist_ok=True)  # download_single_file assumes this exists (normally
+    # created by dataset.py's own CLI __main__ block, which we bypass calling it as a library)
     for i in range(n_shards):
         download_single_file(i)
-    from nanochat.dataset import MAX_SHARD
     download_single_file(MAX_SHARD)
 
     tok = load_tokenizer()
