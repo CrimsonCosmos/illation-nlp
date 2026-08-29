@@ -1,0 +1,11 @@
+{
+  "note": "reconstructed from console output (instance stopped before scp completed) -- val_loss checkpoints only, per-20-step train_loss lines not preserved",
+  "val_loss_trajectory": [
+    [100, 4.6286], [200, 4.8582], [300, 4.8372], [400, 5.0863], [500, 4.8439],
+    [600, 4.9418], [700, 4.8471], [800, 4.8633], [900, 4.8529], [1000, 4.7193],
+    [1100, 5.0186], [1200, 5.0892], [1300, 4.8195], [1400, 4.9318], [1500, 4.8596],
+    [1600, 5.0698], [1700, 4.9605], [1800, 5.2891], [1900, 4.9138], [2000, 4.9844]
+  ],
+  "final_val_loss": 4.9844,
+  "best_val_loss": 4.6286
+}
