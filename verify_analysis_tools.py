@@ -52,12 +52,14 @@ def main():
     comp = compressibility_check([r["internal_thought"] for r in all_records], corpus_text, ivocab.base_alphabet)
     print(f"compressibility: {comp}")
 
-    rec = recurrence_check(all_records, min_len=2)
+    rec = recurrence_check(all_records, vocab_size=ivocab.vocab_size, min_len=2)
     print(f"recurrence: {rec}")
 
-    start = random.randint(0, len(ext_ids) - T - 1)
-    batch = ext_ids[start : start + T].unsqueeze(0)
-    abl = ablation_check(model, batch, think_ticks)
+    def sample_fn():
+        start = random.randint(0, len(ext_ids) - T - 1)
+        return ext_ids[start : start + T].unsqueeze(0)
+
+    abl = ablation_check(model, sample_fn, think_ticks, n_batches=5)
     print(f"ablation: {abl}")
 
     print()

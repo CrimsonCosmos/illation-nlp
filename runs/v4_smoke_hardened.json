@@ -2,67 +2,73 @@
   {
     "position": 0,
     "context_text": " one",
-    "internal_thought": "/bB ",
+    "internal_thought": "gd+5",
     "target_token_id": 851
   },
   {
     "position": 1,
     "context_text": " one door",
-    "internal_thought": "dG_g",
+    "internal_thought": "_B4}",
     "target_token_id": 367
   },
   {
     "position": 2,
     "context_text": " one door at",
-    "internal_thought": "RX\\?",
+    "internal_thought": "FNsv",
     "target_token_id": 269
   },
   {
     "position": 3,
     "context_text": " one door at the",
-    "internal_thought": "5UJ3",
+    "internal_thought": "4m4^",
     "target_token_id": 2197
   },
   {
     "position": 4,
     "context_text": " one door at the top",
-    "internal_thought": "hxHi",
+    "internal_thought": "WD{=",
     "target_token_id": 288
   },
   {
     "position": 5,
     "context_text": " one door at the top of",
-    "internal_thought": "w7yx",
+    "internal_thought": "Auu>",
     "target_token_id": 269
   },
   {
     "position": 6,
     "context_text": " one door at the top of the",
-    "internal_thought": "W(D ",
+    "internal_thought": "jhhj",
     "target_token_id": 5956
   },
   {
     "position": 7,
     "context_text": " one door at the top of the stair",
-    "internal_thought": "xe{9",
+    "internal_thought": "@Lx{",
     "target_token_id": 544
   },
   {
     "position": 8,
     "context_text": " one door at the top of the stairway",
-    "internal_thought": "]Q_R",
+    "internal_thought": "�%PQ",
     "target_token_id": 423
   },
   {
     "position": 9,
     "context_text": " one door at the top of the stairway which",
-    "internal_thought": "p+;/",
+    "internal_thought": "iA\"M",
     "target_token_id": 17
   },
   {
     "position": 10,
     "context_text": " one door at the top of the stairway which,",
-    "internal_thought": "sh=A",
+    "internal_thought": "1Z+$",
     "target_token_id": 760
+  },
+  {
+    "position": 11,
+    "context_text": " one door at the top of the stairway which, though",
+    "internal_thought": "\\ei4",
+    "target_token_id": null
   }
 ]

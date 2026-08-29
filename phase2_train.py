@@ -47,11 +47,19 @@ def sample_batch(ids, T, batch_size):
 
 
 def run(phase1_ckpt, corpus_path, vocab_scheme, think_ticks, steps, block_size=16, batch_size=4,
-        internal_n_layer=3, internal_n_embd=128, out_dir=None, seed=0, log_every=20, eval_every=100):
+        internal_n_layer=3, internal_n_embd=128, out_dir=None, seed=0, log_every=20, eval_every=100,
+        baseline=False):
+    """baseline=True runs the no-illation control arm (illation_active=False on every
+    forward call) -- same architecture, same corpus, same optimizer, same step count, same
+    random seed (so it samples the identical sequence of training batches, since batch
+    sampling uses Python's `random` module, untouched by how many params the model has),
+    just with the Internal model and both cross-attention directions never engaged. This is
+    what makes the illation-arm's loss curve interpretable as "illation helped" rather than
+    just "more fine-tuning steps helped" -- see the plan's ablation-check fix discussion."""
     torch.manual_seed(seed)
     random.seed(seed)
     device = get_device()
-    print(f"device={device} vocab_scheme={vocab_scheme} think_ticks={think_ticks}")
+    print(f"device={device} vocab_scheme={vocab_scheme} think_ticks={think_ticks} baseline={baseline}")
 
     tok = load_tokenizer()
     corpus_text = Path(corpus_path).read_text(encoding="utf-8")
@@ -81,14 +89,31 @@ def run(phase1_ckpt, corpus_path, vocab_scheme, think_ticks, steps, block_size=1
 
     opt = torch.optim.AdamW(model.parameters(), lr=1e-4, betas=(0.9, 0.95), weight_decay=0.01)
 
-    out_dir = Path(out_dir) if out_dir else HERE / "runs" / f"v4_phase2_{vocab_scheme}_tt{think_ticks}"
+    tag = "baseline" if baseline else vocab_scheme
+    out_dir = Path(out_dir) if out_dir else HERE / "runs" / f"v4_phase2_{tag}_tt{think_ticks}"
     out_dir.mkdir(parents=True, exist_ok=True)
     history = []
+    best_val = float("inf")
     t0 = time.time()
+    illation_active = not baseline
+
+    def ckpt_dict():
+        return {
+            "external": model.external.state_dict(),
+            "internal": model.internal.state_dict(),
+            "ext_reads_int": model.ext_reads_int.state_dict(),
+            "int_reads_ext": model.int_reads_ext.state_dict(),
+            "thought_start": model.thought_start,
+            "internal_cfg": internal_cfg.__dict__,
+            "external_cfg": external_cfg.__dict__,
+            "vocab_scheme": vocab_scheme,
+            "think_ticks": think_ticks,
+            "baseline": baseline,
+        }
 
     for step in range(1, steps + 1):
         batch = sample_batch(train_ids, block_size, batch_size).to(device)
-        loss = model.forward(batch, think_ticks=think_ticks)
+        loss = model.forward(batch, think_ticks=think_ticks, illation_active=illation_active)
         opt.zero_grad(set_to_none=True)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -102,8 +127,11 @@ def run(phase1_ckpt, corpus_path, vocab_scheme, think_ticks, steps, block_size=1
         if step % eval_every == 0 or step == steps:
             model.eval()
             with torch.no_grad():
-                val_losses = [model.forward(sample_batch(val_ids, block_size, batch_size).to(device), think_ticks=think_ticks).item()
-                              for _ in range(10)]
+                val_losses = [
+                    model.forward(sample_batch(val_ids, block_size, batch_size).to(device),
+                                  think_ticks=think_ticks, illation_active=illation_active).item()
+                    for _ in range(10)
+                ]
             model.train()
             val_loss = sum(val_losses) / len(val_losses)
             print(f"  >> val_loss {val_loss:.4f}")
@@ -111,33 +139,34 @@ def run(phase1_ckpt, corpus_path, vocab_scheme, think_ticks, steps, block_size=1
                 history[-1]["val_loss"] = val_loss
             else:
                 history.append({"step": step, "val_loss": val_loss})
+            if val_loss < best_val:
+                best_val = val_loss
+                torch.save(ckpt_dict(), out_dir / "best.pt")
 
-    torch.save({
-        "external": model.external.state_dict(),
-        "internal": model.internal.state_dict(),
-        "ext_reads_int": model.ext_reads_int.state_dict(),
-        "int_reads_ext": model.int_reads_ext.state_dict(),
-        "thought_start": model.thought_start,
-        "internal_cfg": internal_cfg.__dict__,
-        "external_cfg": external_cfg.__dict__,
-        "vocab_scheme": vocab_scheme,
-        "think_ticks": think_ticks,
-    }, out_dir / "final.pt")
+    torch.save(ckpt_dict(), out_dir / "final.pt")
     with open(out_dir / "history.json", "w") as f:
         json.dump(history, f, indent=2)
 
-    # Structural analysis pass
+    if baseline:
+        print(f"baseline arm done (best val_loss={best_val:.4f}), skipping Internal-model structural analysis")
+        print(f"saved to {out_dir}")
+        return history, None
+
+    # Structural analysis pass -- larger hardened sample (compressibility needs real
+    # length to be meaningful, see analyze_internal.MIN_RELIABLE_CHARS) and a properly
+    # averaged ablation check (many batches, not one -- see analyze_internal.ablation_check).
     model.eval()
     with torch.no_grad():
         all_records = []
-        for _ in range(8):
+        for _ in range(70):
             batch = sample_batch(val_ids, block_size, 1).to(device)
             records = log_hardened_run(model, ivocab, tok, batch, think_ticks, out_dir / "hardened_log.json")
             all_records.extend(records)
         comp = compressibility_check([r["internal_thought"] for r in all_records], corpus_text, ivocab.base_alphabet)
-        rec = recurrence_check(all_records, min_len=2)
-        batch = sample_batch(val_ids, block_size, 1).to(device)
-        abl = ablation_check(model, batch, think_ticks)
+        rec = recurrence_check(all_records, vocab_size=ivocab.vocab_size, min_len=2)
+        abl = ablation_check(
+            model, lambda: sample_batch(val_ids, block_size, batch_size).to(device), think_ticks, n_batches=10
+        )
     model.train()
 
     analysis = {"compressibility": comp, "recurrence": rec, "ablation": abl}
@@ -157,5 +186,7 @@ if __name__ == "__main__":
     ap.add_argument("--steps", type=int, default=500)
     ap.add_argument("--block-size", type=int, default=16)
     ap.add_argument("--out", type=str, default=None)
+    ap.add_argument("--baseline", action="store_true", help="no-illation control arm (see run()'s docstring)")
     args = ap.parse_args()
-    run(args.phase1_ckpt, args.corpus, args.vocab_scheme, args.think_ticks, args.steps, args.block_size, out_dir=args.out)
+    run(args.phase1_ckpt, args.corpus, args.vocab_scheme, args.think_ticks, args.steps, args.block_size,
+        out_dir=args.out, baseline=args.baseline)

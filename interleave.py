@@ -89,7 +89,8 @@ class InterleavedStack(nn.Module):
             for _ in range(self.internal_cfg.n_layer)
         ]
 
-    def run(self, external_token_ids, think_ticks, return_traces=False, hard=True, positions=None):
+    def run(self, external_token_ids, think_ticks, return_traces=False, hard=True, positions=None,
+            illation_active=True):
         """Core coupling loop, producing per-position External logits WITHOUT requiring a
         target/next-token at every position -- used by both forward() (training, needs the
         full shifted-target loss) and generation (needs only the last position's logits).
@@ -99,10 +100,30 @@ class InterleavedStack(nn.Module):
         as think_ticks internal state (last_internal_states must still be carried through
         every position in between for the coupling to be correct, so this only saves the
         External logits/lm_head computation, not the self-attention recompute itself).
+        illation_active: when False, the Internal model and both cross-attention directions
+        are skipped entirely -- this is the no-illation control arm (see phase2_train.py's
+        --baseline), used to get a real A/B comparison instead of judging illation's effect
+        from its absolute loss curve alone. Without cross-attention, a position's output no
+        longer depends on any per-position side-state, so we take the efficient one-shot
+        path: a single causal forward over the whole sequence gives identical results to
+        recomputing from scratch at every position (standard causal-transformer property),
+        just without the O(T^2) cost -- this also makes the control arm cheap to run for
+        many more steps than the illation arm, which is fine since what must be held equal
+        across arms is optimizer step count, not wall-clock time.
         Returns: (logits (B, len(positions), vocab), internal_traces or None).
         """
         B, T = external_token_ids.shape
         device = external_token_ids.device
+
+        if not illation_active:
+            x = self.external.embed(external_token_ids)
+            x_final, _ = self.external.run_stack(x, cross_attn_fn=None)
+            logits = self.external.logits(x_final)
+            if positions is not None:
+                idx = torch.tensor(sorted(set(positions)), device=device)
+                logits = logits.index_select(1, idx)
+            return logits, None
+
         last_internal_states = self._zero_internal_states(B, device)
         if positions is None:
             positions = list(range(T))
@@ -144,18 +165,20 @@ class InterleavedStack(nn.Module):
         logits = torch.cat(all_logits, dim=1)  # (B, len(positions), vocab)
         return logits, internal_traces
 
-    def forward(self, external_token_ids, think_ticks, return_traces=False, hard=True):
+    def forward(self, external_token_ids, think_ticks, return_traces=False, hard=True, illation_active=True):
         """external_token_ids: (B, T) token ids for the External model (already includes
         the final target token, i.e. T = context_len + 1; standard next-token setup).
         hard: whether the Internal model's per-tick character choice is the STE hard
         one-hot (True, the real training/inference setting) or the raw soft distribution
         (False, for gradient-correctness verification only -- see internal_model.py).
+        illation_active: False runs the no-illation control arm -- see run()'s docstring.
         Returns: loss (scalar), and optionally internal_traces (hard character ids chosen
         per tick per position, for hardening/inspection).
         """
         T = external_token_ids.shape[1]
         logits, internal_traces = self.run(
-            external_token_ids, think_ticks, return_traces=return_traces, hard=hard, positions=range(T - 1)
+            external_token_ids, think_ticks, return_traces=return_traces, hard=hard,
+            positions=range(T - 1), illation_active=illation_active
         )
         targets = external_token_ids[:, 1:]  # (B, T-1)
         loss = F.cross_entropy(logits.reshape(-1, logits.size(-1)), targets.reshape(-1))
