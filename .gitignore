@@ -1,0 +1,24 @@
+# secrets / AWS resource files -- never commit
+illation-key.pem
+instance_id.txt
+instance_ip.txt
+sg_id.txt
+
+# environment
+venv/
+__pycache__/
+*.pyc
+
+# large / regenerable data
+data/corpus.txt
+data/dracula_raw.txt
+data/books/
+tokenizer_files/
+runs/**/*.pt
+runs/**/*.safetensors
+runs/**/best/
+runs/**/final/
+
+# logs
+run_both.log
+*.log

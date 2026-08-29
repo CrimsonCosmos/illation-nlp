@@ -1,0 +1,68 @@
+[
+  {
+    "position": 0,
+    "context_text": " one",
+    "internal_thought": "/bB ",
+    "target_token_id": 851
+  },
+  {
+    "position": 1,
+    "context_text": " one door",
+    "internal_thought": "dG_g",
+    "target_token_id": 367
+  },
+  {
+    "position": 2,
+    "context_text": " one door at",
+    "internal_thought": "RX\\?",
+    "target_token_id": 269
+  },
+  {
+    "position": 3,
+    "context_text": " one door at the",
+    "internal_thought": "5UJ3",
+    "target_token_id": 2197
+  },
+  {
+    "position": 4,
+    "context_text": " one door at the top",
+    "internal_thought": "hxHi",
+    "target_token_id": 288
+  },
+  {
+    "position": 5,
+    "context_text": " one door at the top of",
+    "internal_thought": "w7yx",
+    "target_token_id": 269
+  },
+  {
+    "position": 6,
+    "context_text": " one door at the top of the",
+    "internal_thought": "W(D ",
+    "target_token_id": 5956
+  },
+  {
+    "position": 7,
+    "context_text": " one door at the top of the stair",
+    "internal_thought": "xe{9",
+    "target_token_id": 544
+  },
+  {
+    "position": 8,
+    "context_text": " one door at the top of the stairway",
+    "internal_thought": "]Q_R",
+    "target_token_id": 423
+  },
+  {
+    "position": 9,
+    "context_text": " one door at the top of the stairway which",
+    "internal_thought": "p+;/",
+    "target_token_id": 17
+  },
+  {
+    "position": 10,
+    "context_text": " one door at the top of the stairway which,",
+    "internal_thought": "sh=A",
+    "target_token_id": 760
+  }
+]

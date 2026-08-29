@@ -1,0 +1,471 @@
+[
+  {
+    "step": 1,
+    "lm_loss": 8.987347602844238,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1.0935039520263672
+  },
+  {
+    "step": 50,
+    "lm_loss": 4.955881118774414,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 40.21702694892883
+  },
+  {
+    "step": 100,
+    "lm_loss": 4.294684410095215,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 81.65973496437073
+  },
+  {
+    "step": 150,
+    "lm_loss": 3.8445873260498047,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 124.23147010803223
+  },
+  {
+    "step": 200,
+    "lm_loss": 3.2968227863311768,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 172.89872002601624
+  },
+  {
+    "step": 250,
+    "lm_loss": 3.361865997314453,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 226.73538088798523,
+    "val_loss": 4.785165905952454
+  },
+  {
+    "step": 300,
+    "lm_loss": 2.8242101669311523,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 289.97254395484924
+  },
+  {
+    "step": 350,
+    "lm_loss": 2.650557041168213,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 343.7952480316162
+  },
+  {
+    "step": 400,
+    "lm_loss": 2.7878215312957764,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 396.798367023468
+  },
+  {
+    "step": 450,
+    "lm_loss": 2.3549656867980957,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 449.368008852005
+  },
+  {
+    "step": 500,
+    "lm_loss": 2.049509048461914,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 501.25798296928406,
+    "val_loss": 5.435012006759644
+  },
+  {
+    "step": 550,
+    "lm_loss": 1.793976902961731,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 556.1719028949738
+  },
+  {
+    "step": 600,
+    "lm_loss": 2.096985101699829,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 611.8008480072021
+  },
+  {
+    "step": 650,
+    "lm_loss": 1.8692073822021484,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 668.8833560943604
+  },
+  {
+    "step": 700,
+    "lm_loss": 1.6195967197418213,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 723.6337690353394
+  },
+  {
+    "step": 750,
+    "lm_loss": 1.5612819194793701,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 779.6192779541016,
+    "val_loss": 5.781881093978882
+  },
+  {
+    "step": 800,
+    "lm_loss": 1.2700227499008179,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 839.3514108657837
+  },
+  {
+    "step": 850,
+    "lm_loss": 1.2607365846633911,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 898.4455740451813
+  },
+  {
+    "step": 900,
+    "lm_loss": 1.2465095520019531,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 954.2191410064697
+  },
+  {
+    "step": 950,
+    "lm_loss": 1.4173179864883423,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1008.4867980480194
+  },
+  {
+    "step": 1000,
+    "lm_loss": 1.0439479351043701,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1062.245381116867,
+    "val_loss": 6.2179152250289915
+  },
+  {
+    "step": 1050,
+    "lm_loss": 1.1996445655822754,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1121.266695022583
+  },
+  {
+    "step": 1100,
+    "lm_loss": 0.8229877948760986,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1177.336953163147
+  },
+  {
+    "step": 1150,
+    "lm_loss": 1.0731611251831055,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1234.052784204483
+  },
+  {
+    "step": 1200,
+    "lm_loss": 1.0665247440338135,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1288.6374220848083
+  },
+  {
+    "step": 1250,
+    "lm_loss": 0.7404909133911133,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1345.2407360076904,
+    "val_loss": 6.610949587821961
+  },
+  {
+    "step": 1300,
+    "lm_loss": 0.7601185441017151,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1404.2847800254822
+  },
+  {
+    "step": 1350,
+    "lm_loss": 0.9209584593772888,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1460.5541920661926
+  },
+  {
+    "step": 1400,
+    "lm_loss": 1.1054158210754395,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1515.4810109138489
+  },
+  {
+    "step": 1450,
+    "lm_loss": 0.9597769975662231,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1567.835793018341
+  },
+  {
+    "step": 1500,
+    "lm_loss": 0.7739177942276001,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1619.3618969917297,
+    "val_loss": 6.724833250045776
+  },
+  {
+    "step": 1550,
+    "lm_loss": 0.9926354885101318,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1676.8319990634918
+  },
+  {
+    "step": 1600,
+    "lm_loss": 0.7359004020690918,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1732.0480880737305
+  },
+  {
+    "step": 1650,
+    "lm_loss": 0.9039267897605896,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 1790.6129620075226
+  },
+  {
+    "step": 1700,
+    "lm_loss": 0.8306279182434082,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 2765.3727610111237
+  },
+  {
+    "step": 1750,
+    "lm_loss": 0.7594485878944397,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 2857.4617750644684,
+    "val_loss": 7.030387425422669
+  },
+  {
+    "step": 1800,
+    "lm_loss": 0.6554354429244995,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 2952.2499141693115
+  },
+  {
+    "step": 1850,
+    "lm_loss": 0.8506999015808105,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3025.9867508411407
+  },
+  {
+    "step": 1900,
+    "lm_loss": 0.7503092288970947,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3066.1868641376495
+  },
+  {
+    "step": 1950,
+    "lm_loss": 0.6881911754608154,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3106.654639005661
+  },
+  {
+    "step": 2000,
+    "lm_loss": 0.862654447555542,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3147.3503432273865,
+    "val_loss": 7.3218155145645145
+  },
+  {
+    "step": 2050,
+    "lm_loss": 0.7857292890548706,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3190.8532421588898
+  },
+  {
+    "step": 2100,
+    "lm_loss": 0.5897126793861389,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3234.929214000702
+  },
+  {
+    "step": 2150,
+    "lm_loss": 0.6240664124488831,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3280.363615989685
+  },
+  {
+    "step": 2200,
+    "lm_loss": 0.6932387351989746,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3325.7440371513367
+  },
+  {
+    "step": 2250,
+    "lm_loss": 0.643508791923523,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3371.3294031620026,
+    "val_loss": 7.5435079574584964
+  },
+  {
+    "step": 2300,
+    "lm_loss": 0.666242778301239,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3419.7651472091675
+  },
+  {
+    "step": 2350,
+    "lm_loss": 0.6072523593902588,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3466.838725090027
+  },
+  {
+    "step": 2400,
+    "lm_loss": 0.6206368207931519,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3513.795716047287
+  },
+  {
+    "step": 2450,
+    "lm_loss": 0.6301662921905518,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3560.9330039024353
+  },
+  {
+    "step": 2500,
+    "lm_loss": 0.4589625597000122,
+    "illation_loss": null,
+    "reward_ema": null,
+    "lookups": null,
+    "episodes": null,
+    "elapsed": 3608.146674156189,
+    "val_loss": 7.442829942703247
+  }
+]
