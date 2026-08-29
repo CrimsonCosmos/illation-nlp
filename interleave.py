@@ -89,23 +89,29 @@ class InterleavedStack(nn.Module):
             for _ in range(self.internal_cfg.n_layer)
         ]
 
-    def forward(self, external_token_ids, think_ticks, return_traces=False, hard=True):
-        """external_token_ids: (B, T) token ids for the External model (already includes
-        the final target token, i.e. T = context_len + 1; standard next-token setup).
-        hard: whether the Internal model's per-tick character choice is the STE hard
-        one-hot (True, the real training/inference setting) or the raw soft distribution
-        (False, for gradient-correctness verification only -- see internal_model.py).
-        Returns: loss (scalar), and optionally internal_traces (hard character ids chosen
-        per tick per position, for hardening/inspection) and think_ticks used.
+    def run(self, external_token_ids, think_ticks, return_traces=False, hard=True, positions=None):
+        """Core coupling loop, producing per-position External logits WITHOUT requiring a
+        target/next-token at every position -- used by both forward() (training, needs the
+        full shifted-target loss) and generation (needs only the last position's logits).
+        positions: optional explicit list of position indices to compute logits for
+        (defaults to every position in the sequence); generation uses this to compute only
+        the final position's logits each step, without wastefully recomputing earlier ones
+        as think_ticks internal state (last_internal_states must still be carried through
+        every position in between for the coupling to be correct, so this only saves the
+        External logits/lm_head computation, not the self-attention recompute itself).
+        Returns: (logits (B, len(positions), vocab), internal_traces or None).
         """
         B, T = external_token_ids.shape
         device = external_token_ids.device
         last_internal_states = self._zero_internal_states(B, device)
+        if positions is None:
+            positions = list(range(T))
+        positions = set(positions)
 
         all_logits = []
         internal_traces = [] if return_traces else None
 
-        for t in range(T - 1):  # last position has no target, skip predicting past it
+        for t in range(T):
             tok_ids_so_far = external_token_ids[:, : t + 1]
             x = self.external.embed(tok_ids_so_far)
 
@@ -113,8 +119,8 @@ class InterleavedStack(nn.Module):
                 return self.ext_reads_int[layer_idx](x_layer, _states)
 
             x_final, ext_layer_states_full = self.external.run_stack(x, cross_attn_fn=ext_cross)
-            logits_t = self.external.logits(x_final[:, -1:, :])
-            all_logits.append(logits_t)
+            if t in positions:
+                all_logits.append(self.external.logits(x_final[:, -1:, :]))
             ext_layer_states_now = [s[:, -1:, :] for s in ext_layer_states_full]
 
             internal_seq = self.thought_start.expand(B, -1, -1)
@@ -135,10 +141,53 @@ class InterleavedStack(nn.Module):
             if return_traces:
                 internal_traces.append(tick_ids)
 
-        logits = torch.cat(all_logits, dim=1)  # (B, T-1, vocab)
+        logits = torch.cat(all_logits, dim=1)  # (B, len(positions), vocab)
+        return logits, internal_traces
+
+    def forward(self, external_token_ids, think_ticks, return_traces=False, hard=True):
+        """external_token_ids: (B, T) token ids for the External model (already includes
+        the final target token, i.e. T = context_len + 1; standard next-token setup).
+        hard: whether the Internal model's per-tick character choice is the STE hard
+        one-hot (True, the real training/inference setting) or the raw soft distribution
+        (False, for gradient-correctness verification only -- see internal_model.py).
+        Returns: loss (scalar), and optionally internal_traces (hard character ids chosen
+        per tick per position, for hardening/inspection).
+        """
+        T = external_token_ids.shape[1]
+        logits, internal_traces = self.run(
+            external_token_ids, think_ticks, return_traces=return_traces, hard=hard, positions=range(T - 1)
+        )
         targets = external_token_ids[:, 1:]  # (B, T-1)
         loss = F.cross_entropy(logits.reshape(-1, logits.size(-1)), targets.reshape(-1))
 
         if return_traces:
             return loss, internal_traces
         return loss
+
+    @torch.no_grad()
+    def generate(self, prompt_ids, think_ticks, max_new_tokens, temperature=1.0, top_k=None):
+        """prompt_ids: (1, T0) token ids. Autoregressively extends the sequence, computing
+        only the final position's logits at each step (see run()'s `positions` arg) --
+        still recomputes External self-attention over the growing context from scratch each
+        step (the same O(T^2) prototype tradeoff as training), fine for short generations.
+        Per the confirmed reversal of the original training-only premise, illation runs
+        here too: think_ticks is a real generation-time knob."""
+        was_training = self.training
+        self.eval()
+        ids = prompt_ids.clone()
+        for _ in range(max_new_tokens):
+            T = ids.shape[1]
+            logits, _ = self.run(ids, think_ticks, positions=[T - 1])
+            logits = logits[:, -1, :]
+            if top_k is not None and top_k > 0:
+                v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                logits[logits < v[:, [-1]]] = -float("inf")
+            if temperature > 0:
+                probs = F.softmax(logits / temperature, dim=-1)
+                next_id = torch.multinomial(probs, num_samples=1)
+            else:
+                next_id = torch.argmax(logits, dim=-1, keepdim=True)
+            ids = torch.cat([ids, next_id], dim=1)
+        if was_training:
+            self.train()
+        return ids

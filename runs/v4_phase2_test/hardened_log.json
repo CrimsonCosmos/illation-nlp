@@ -1,0 +1,56 @@
+[
+  {
+    "position": 0,
+    "context_text": " seemed",
+    "internal_thought": "Jz",
+    "target_token_id": 2334
+  },
+  {
+    "position": 1,
+    "context_text": " seemed natural",
+    "internal_thought": "z~",
+    "target_token_id": 17
+  },
+  {
+    "position": 2,
+    "context_text": " seemed natural,",
+    "internal_thought": "*]",
+    "target_token_id": 204
+  },
+  {
+    "position": 3,
+    "context_text": " seemed natural,\n",
+    "internal_thought": ":}",
+    "target_token_id": 1160
+  },
+  {
+    "position": 4,
+    "context_text": " seemed natural,\nlike",
+    "internal_thought": "k^",
+    "target_token_id": 265
+  },
+  {
+    "position": 5,
+    "context_text": " seemed natural,\nlike a",
+    "internal_thought": "8z",
+    "target_token_id": 1121
+  },
+  {
+    "position": 6,
+    "context_text": " seemed natural,\nlike a return",
+    "internal_thought": "}y",
+    "target_token_id": 289
+  },
+  {
+    "position": 7,
+    "context_text": " seemed natural,\nlike a return to",
+    "internal_thought": "yT",
+    "target_token_id": 269
+  },
+  {
+    "position": 8,
+    "context_text": " seemed natural,\nlike a return to the",
+    "internal_thought": "14",
+    "target_token_id": 738
+  }
+]
