@@ -41,7 +41,7 @@ class CrossAttentionPool(nn.Module):
     scalar initialized at 0 (via tanh) so the coupling starts as a no-op and only grows
     as training finds it useful -- standard practice for newly-added residual branches."""
 
-    def __init__(self, query_dim, kv_dim, n_head=4):
+    def __init__(self, query_dim, kv_dim, n_head=4, gate_init=0.3):
         super().__init__()
         assert query_dim % n_head == 0
         self.mha = nn.MultiheadAttention(
@@ -53,7 +53,14 @@ class CrossAttentionPool(nn.Module):
         # real gradient because dL/dW_last doesn't depend on W_last's own value. A shared
         # external multiplicative gate doesn't have that property, so it needs a small
         # nonzero start instead of exact zero to avoid a dead-on-arrival branch.
-        self.gate = nn.Parameter(torch.full((1,), 0.05))
+        #
+        # gate_init=0.3 (raised from 0.05 after the first controlled experiment showed the
+        # coupling was functionally inert at 0.05 -- both the ablation check and a full
+        # illation-vs-no-illation A/B came back statistically indistinguishable from zero
+        # effect). A stronger starting coupling gives the mechanism a real forward
+        # contribution to build on, rather than needing gradient descent to discover from a
+        # near-zero, near-uninformative starting point that a stronger connection would help.
+        self.gate = nn.Parameter(torch.full((1,), gate_init))
 
     def forward(self, query_x, kv_layer_states):
         kv = torch.cat(kv_layer_states, dim=1)  # (B, n_layers * Tk, kv_dim)
@@ -62,7 +69,7 @@ class CrossAttentionPool(nn.Module):
 
 
 class InterleavedStack(nn.Module):
-    def __init__(self, internal_cfg: InternalConfig, external_cfg: ExternalConfig, cross_n_head=4):
+    def __init__(self, internal_cfg: InternalConfig, external_cfg: ExternalConfig, cross_n_head=4, gate_init=0.3):
         super().__init__()
         self.internal_cfg = internal_cfg
         self.external_cfg = external_cfg
@@ -71,12 +78,12 @@ class InterleavedStack(nn.Module):
 
         # External layer i reads Internal's per-layer states (kv_dim = internal n_embd)
         self.ext_reads_int = nn.ModuleList([
-            CrossAttentionPool(external_cfg.n_embd, internal_cfg.n_embd, cross_n_head)
+            CrossAttentionPool(external_cfg.n_embd, internal_cfg.n_embd, cross_n_head, gate_init=gate_init)
             for _ in range(external_cfg.n_layer)
         ])
         # Internal layer i reads External's per-layer states (kv_dim = external n_embd)
         self.int_reads_ext = nn.ModuleList([
-            CrossAttentionPool(internal_cfg.n_embd, external_cfg.n_embd, cross_n_head)
+            CrossAttentionPool(internal_cfg.n_embd, external_cfg.n_embd, cross_n_head, gate_init=gate_init)
             for _ in range(internal_cfg.n_layer)
         ])
         # Learned "start of thought" seed embedding for each tick sequence
