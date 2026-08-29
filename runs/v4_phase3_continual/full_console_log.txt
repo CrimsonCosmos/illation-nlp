@@ -1,0 +1,143 @@
+device=cuda vocab_scheme=ascii think_ticks=8 gate_init=0.3
+  session jekyll_and_hyde: 44190 tokens (41981 train / 2209 val)
+  session war_of_the_worlds: 97011 tokens (92161 train / 4850 val)
+  session frankenstein: 113665 tokens (107982 train / 5683 val)
+  session picture_of_dorian_gray: 123987 tokens (117788 train / 6199 val)
+  session sherlock_holmes: 161038 tokens (152987 train / 8051 val)
+  session pride_and_prejudice: 190692 tokens (181158 train / 9534 val)
+  session dracula: 236252 tokens (224440 train / 11812 val)
+  session moby_dick: 348870 tokens (331427 train / 17443 val)
+loaded Phase 1 External checkpoint from runs/v4_phase1/best.pt
+trainable (Internal+interleaving): 6.37M | frozen (External): 33.36M
+
+=== session 1/8: jekyll_and_hyde ===
+  step    1/250 | loss 4.9393 | tau 1.000 | elapsed     3.0s
+  step   25/250 | loss 5.4150 | tau 0.991 | elapsed    54.0s
+  step   50/250 | loss 4.7935 | tau 0.983 | elapsed   107.2s
+  step   75/250 | loss 5.0349 | tau 0.974 | elapsed   160.6s
+  step  100/250 | loss 4.7817 | tau 0.965 | elapsed   213.9s
+  step  125/250 | loss 4.0583 | tau 0.956 | elapsed   267.0s
+  step  150/250 | loss 4.6198 | tau 0.948 | elapsed   320.1s
+  step  175/250 | loss 5.1944 | tau 0.939 | elapsed   373.2s
+  step  200/250 | loss 5.8284 | tau 0.930 | elapsed   426.6s
+  step  225/250 | loss 5.1752 | tau 0.921 | elapsed   479.9s
+  step  250/250 | loss 4.6758 | tau 0.912 | elapsed   533.0s
+  eval after jekyll_and_hyde: {'jekyll_and_hyde': 3.977368402481079}
+  checkpointed: 20ee8f23
+
+=== session 2/8: war_of_the_worlds ===
+  step    1/250 | loss 4.6869 | tau 0.912 | elapsed   539.4s
+  step   25/250 | loss 5.3340 | tau 0.904 | elapsed   590.6s
+  step   50/250 | loss 5.4760 | tau 0.895 | elapsed   643.8s
+  step   75/250 | loss 5.1093 | tau 0.886 | elapsed   696.8s
+  step  100/250 | loss 4.2655 | tau 0.878 | elapsed   749.8s
+  step  125/250 | loss 5.3328 | tau 0.869 | elapsed   803.6s
+  step  150/250 | loss 4.7543 | tau 0.860 | elapsed   857.3s
+  step  175/250 | loss 4.9645 | tau 0.851 | elapsed   911.1s
+  step  200/250 | loss 4.3137 | tau 0.843 | elapsed   965.0s
+  step  225/250 | loss 5.1356 | tau 0.834 | elapsed  1018.8s
+  step  250/250 | loss 5.7404 | tau 0.825 | elapsed  1072.6s
+  eval after war_of_the_worlds: {'jekyll_and_hyde': 3.6744841575622558, 'war_of_the_worlds': 4.01152400970459}
+  checkpointed: 711f8bc0
+
+=== session 3/8: frankenstein ===
+  step    1/250 | loss 5.1388 | tau 0.825 | elapsed  1082.3s
+  step   25/250 | loss 5.5897 | tau 0.816 | elapsed  1133.8s
+  step   50/250 | loss 4.9630 | tau 0.807 | elapsed  1187.5s
+  step   75/250 | loss 5.5368 | tau 0.799 | elapsed  1241.0s
+  step  100/250 | loss 4.6957 | tau 0.790 | elapsed  1294.6s
+  step  125/250 | loss 4.5839 | tau 0.781 | elapsed  1348.6s
+  step  150/250 | loss 4.7342 | tau 0.772 | elapsed  1402.3s
+  step  175/250 | loss 4.9066 | tau 0.764 | elapsed  1456.1s
+  step  200/250 | loss 5.1635 | tau 0.755 | elapsed  1509.8s
+  step  225/250 | loss 5.0283 | tau 0.746 | elapsed  1563.3s
+  step  250/250 | loss 5.0165 | tau 0.738 | elapsed  1616.5s
+  eval after frankenstein: {'jekyll_and_hyde': 4.052227544784546, 'war_of_the_worlds': 4.079465627670288, 'frankenstein': 4.141367959976196}
+  checkpointed: ab8bef24
+
+=== session 4/8: picture_of_dorian_gray ===
+  step    1/250 | loss 4.2490 | tau 0.737 | elapsed  1629.7s
+  step   25/250 | loss 4.5762 | tau 0.729 | elapsed  1680.7s
+  step   50/250 | loss 5.0004 | tau 0.720 | elapsed  1733.9s
+  step   75/250 | loss 5.1356 | tau 0.711 | elapsed  1787.1s
+  step  100/250 | loss 4.5414 | tau 0.703 | elapsed  1840.2s
+  step  125/250 | loss 5.6332 | tau 0.694 | elapsed  1893.4s
+  step  150/250 | loss 4.6740 | tau 0.685 | elapsed  1946.7s
+  step  175/250 | loss 4.6512 | tau 0.676 | elapsed  1999.9s
+  step  200/250 | loss 4.7673 | tau 0.667 | elapsed  2053.4s
+  step  225/250 | loss 4.9144 | tau 0.659 | elapsed  2106.9s
+  step  250/250 | loss 5.3716 | tau 0.650 | elapsed  2160.7s
+  eval after picture_of_dorian_gray: {'jekyll_and_hyde': 4.141672563552857, 'war_of_the_worlds': 4.193345785140991, 'frankenstein': 4.121578502655029, 'picture_of_dorian_gray': 4.17778902053833}
+  checkpointed: b5524fb2
+
+=== session 5/8: sherlock_holmes ===
+  step    1/250 | loss 4.3782 | tau 0.650 | elapsed  2176.7s
+  step   25/250 | loss 4.9374 | tau 0.641 | elapsed  2228.4s
+  step   50/250 | loss 4.8523 | tau 0.633 | elapsed  2282.0s
+  step   75/250 | loss 4.5007 | tau 0.624 | elapsed  2335.8s
+  step  100/250 | loss 4.4829 | tau 0.615 | elapsed  2389.6s
+  step  125/250 | loss 4.6988 | tau 0.606 | elapsed  2443.5s
+  step  150/250 | loss 4.2680 | tau 0.598 | elapsed  2497.2s
+  step  175/250 | loss 4.0137 | tau 0.589 | elapsed  2551.1s
+  step  200/250 | loss 5.1740 | tau 0.580 | elapsed  2604.6s
+  step  225/250 | loss 4.5190 | tau 0.571 | elapsed  2657.9s
+  step  250/250 | loss 4.4368 | tau 0.562 | elapsed  2711.2s
+  eval after sherlock_holmes: {'jekyll_and_hyde': 4.049338150024414, 'war_of_the_worlds': 4.060826778411865, 'frankenstein': 4.224643325805664, 'picture_of_dorian_gray': 4.215507459640503, 'sherlock_holmes': 3.930811882019043}
+  checkpointed: 7b1b6e14
+
+=== session 6/8: pride_and_prejudice ===
+  step    1/250 | loss 5.2540 | tau 0.562 | elapsed  2731.0s
+  step   25/250 | loss 4.7273 | tau 0.554 | elapsed  2782.2s
+  step   50/250 | loss 5.0941 | tau 0.545 | elapsed  2835.4s
+  step   75/250 | loss 5.1258 | tau 0.536 | elapsed  2888.7s
+  step  100/250 | loss 5.4808 | tau 0.528 | elapsed  2942.1s
+  step  125/250 | loss 4.7458 | tau 0.519 | elapsed  2995.8s
+  step  150/250 | loss 4.5099 | tau 0.510 | elapsed  3049.7s
+  step  175/250 | loss 4.6620 | tau 0.501 | elapsed  3103.4s
+  step  200/250 | loss 4.0643 | tau 0.493 | elapsed  3157.2s
+  step  225/250 | loss 4.7665 | tau 0.484 | elapsed  3211.2s
+  step  250/250 | loss 5.0139 | tau 0.475 | elapsed  3265.0s
+  eval after pride_and_prejudice: {'jekyll_and_hyde': 4.071543121337891, 'war_of_the_worlds': 4.2191490650177, 'frankenstein': 4.105917692184448, 'picture_of_dorian_gray': 4.048944759368896, 'sherlock_holmes': 4.239475250244141, 'pride_and_prejudice': 4.518428230285645}
+  checkpointed: c84d67c2
+
+=== session 7/8: dracula ===
+  step    1/250 | loss 4.8587 | tau 0.475 | elapsed  3287.4s
+  step   25/250 | loss 4.9850 | tau 0.466 | elapsed  3338.7s
+  step   50/250 | loss 5.1894 | tau 0.458 | elapsed  3392.1s
+  step   75/250 | loss 5.1346 | tau 0.449 | elapsed  3445.6s
+  step  100/250 | loss 4.5906 | tau 0.440 | elapsed  3498.8s
+  step  125/250 | loss 4.5603 | tau 0.431 | elapsed  3552.1s
+  step  150/250 | loss 4.6610 | tau 0.423 | elapsed  3605.3s
+  step  175/250 | loss 5.1616 | tau 0.414 | elapsed  3658.6s
+  step  200/250 | loss 4.8785 | tau 0.405 | elapsed  3711.8s
+  step  225/250 | loss 5.1103 | tau 0.396 | elapsed  3765.0s
+  step  250/250 | loss 5.2495 | tau 0.388 | elapsed  3818.0s
+  eval after dracula: {'jekyll_and_hyde': 4.156503534317016, 'war_of_the_worlds': 4.024776029586792, 'frankenstein': 4.12123851776123, 'picture_of_dorian_gray': 4.1309812545776365, 'sherlock_holmes': 4.274990749359131, 'pride_and_prejudice': 4.689099979400635, 'dracula': 4.263128566741943}
+  checkpointed: 19ab5c5b
+
+=== session 8/8: moby_dick ===
+  step    1/250 | loss 4.8793 | tau 0.387 | elapsed  3844.2s
+  step   25/250 | loss 5.4168 | tau 0.379 | elapsed  3895.4s
+  step   50/250 | loss 5.5152 | tau 0.370 | elapsed  3948.6s
+  step   75/250 | loss 5.3139 | tau 0.361 | elapsed  4001.7s
+  step  100/250 | loss 4.8492 | tau 0.353 | elapsed  4054.9s
+  step  125/250 | loss 5.3378 | tau 0.344 | elapsed  4108.1s
+  step  150/250 | loss 5.3641 | tau 0.335 | elapsed  4161.4s
+  step  175/250 | loss 4.5254 | tau 0.326 | elapsed  4214.7s
+  step  200/250 | loss 5.5352 | tau 0.318 | elapsed  4268.0s
+  step  225/250 | loss 5.4933 | tau 0.309 | elapsed  4321.3s
+  step  250/250 | loss 5.4026 | tau 0.300 | elapsed  4374.7s
+  eval after moby_dick: {'jekyll_and_hyde': 4.0883713722229, 'war_of_the_worlds': 3.956470489501953, 'frankenstein': 4.546000862121582, 'picture_of_dorian_gray': 4.075748491287231, 'sherlock_holmes': 4.277828598022461, 'pride_and_prejudice': 4.034575986862182, 'dracula': 4.260072994232178, 'moby_dick': 4.815295600891114}
+  checkpointed: fcb627fb
+
+saved to /home/ubuntu/illation-nlp/runs/v4_phase3_continual
+user_state history for continual_experiment:
+  fcb627fb continual_experiment: checkpoint (after moby_dick)
+  19ab5c5b continual_experiment: checkpoint (after dracula)
+  c84d67c2 continual_experiment: checkpoint (after pride_and_prejudice)
+  7b1b6e14 continual_experiment: checkpoint (after sherlock_holmes)
+  b5524fb2 continual_experiment: checkpoint (after picture_of_dorian_gray)
+  ab8bef24 continual_experiment: checkpoint (after frankenstein)
+  711f8bc0 continual_experiment: checkpoint (after war_of_the_worlds)
+  20ee8f23 continual_experiment: checkpoint (after jekyll_and_hyde)
+  ca2a4e4c continual_experiment: initial state

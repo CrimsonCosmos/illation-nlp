@@ -1,0 +1,54 @@
+{
+  "jekyll_and_hyde": {
+    "jekyll_and_hyde": 3.977368402481079
+  },
+  "war_of_the_worlds": {
+    "jekyll_and_hyde": 3.6744841575622558,
+    "war_of_the_worlds": 4.01152400970459
+  },
+  "frankenstein": {
+    "jekyll_and_hyde": 4.052227544784546,
+    "war_of_the_worlds": 4.079465627670288,
+    "frankenstein": 4.141367959976196
+  },
+  "picture_of_dorian_gray": {
+    "jekyll_and_hyde": 4.141672563552857,
+    "war_of_the_worlds": 4.193345785140991,
+    "frankenstein": 4.121578502655029,
+    "picture_of_dorian_gray": 4.17778902053833
+  },
+  "sherlock_holmes": {
+    "jekyll_and_hyde": 4.049338150024414,
+    "war_of_the_worlds": 4.060826778411865,
+    "frankenstein": 4.224643325805664,
+    "picture_of_dorian_gray": 4.215507459640503,
+    "sherlock_holmes": 3.930811882019043
+  },
+  "pride_and_prejudice": {
+    "jekyll_and_hyde": 4.071543121337891,
+    "war_of_the_worlds": 4.2191490650177,
+    "frankenstein": 4.105917692184448,
+    "picture_of_dorian_gray": 4.048944759368896,
+    "sherlock_holmes": 4.239475250244141,
+    "pride_and_prejudice": 4.518428230285645
+  },
+  "dracula": {
+    "jekyll_and_hyde": 4.156503534317016,
+    "war_of_the_worlds": 4.024776029586792,
+    "frankenstein": 4.12123851776123,
+    "picture_of_dorian_gray": 4.1309812545776365,
+    "sherlock_holmes": 4.274990749359131,
+    "pride_and_prejudice": 4.689099979400635,
+    "dracula": 4.263128566741943
+  },
+  "moby_dick": {
+    "jekyll_and_hyde": 4.0883713722229,
+    "war_of_the_worlds": 3.956470489501953,
+    "frankenstein": 4.546000862121582,
+    "picture_of_dorian_gray": 4.075748491287231,
+    "sherlock_holmes": 4.277828598022461,
+    "pride_and_prejudice": 4.034575986862182,
+    "dracula": 4.260072994232178,
+    "moby_dick": 4.815295600891114
+  }
+}

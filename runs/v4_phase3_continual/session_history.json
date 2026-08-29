@@ -1,0 +1,462 @@
+[
+  {
+    "session_idx": 0,
+    "session": "jekyll_and_hyde",
+    "steps": [
+      {
+        "cumulative_step": 1,
+        "loss": 4.939261436462402
+      },
+      {
+        "cumulative_step": 25,
+        "loss": 5.415046691894531
+      },
+      {
+        "cumulative_step": 50,
+        "loss": 4.793525218963623
+      },
+      {
+        "cumulative_step": 75,
+        "loss": 5.034911632537842
+      },
+      {
+        "cumulative_step": 100,
+        "loss": 4.781726360321045
+      },
+      {
+        "cumulative_step": 125,
+        "loss": 4.058252334594727
+      },
+      {
+        "cumulative_step": 150,
+        "loss": 4.619823932647705
+      },
+      {
+        "cumulative_step": 175,
+        "loss": 5.194407939910889
+      },
+      {
+        "cumulative_step": 200,
+        "loss": 5.828371047973633
+      },
+      {
+        "cumulative_step": 225,
+        "loss": 5.175205707550049
+      },
+      {
+        "cumulative_step": 250,
+        "loss": 4.675764083862305
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 3.977368402481079
+    },
+    "commit": "20ee8f2361b92351dcf9b9dbe8435cd985e64217"
+  },
+  {
+    "session_idx": 1,
+    "session": "war_of_the_worlds",
+    "steps": [
+      {
+        "cumulative_step": 251,
+        "loss": 4.686872482299805
+      },
+      {
+        "cumulative_step": 275,
+        "loss": 5.333968639373779
+      },
+      {
+        "cumulative_step": 300,
+        "loss": 5.476038455963135
+      },
+      {
+        "cumulative_step": 325,
+        "loss": 5.109280586242676
+      },
+      {
+        "cumulative_step": 350,
+        "loss": 4.265545845031738
+      },
+      {
+        "cumulative_step": 375,
+        "loss": 5.332796096801758
+      },
+      {
+        "cumulative_step": 400,
+        "loss": 4.754267692565918
+      },
+      {
+        "cumulative_step": 425,
+        "loss": 4.964463233947754
+      },
+      {
+        "cumulative_step": 450,
+        "loss": 4.313697338104248
+      },
+      {
+        "cumulative_step": 475,
+        "loss": 5.13563346862793
+      },
+      {
+        "cumulative_step": 500,
+        "loss": 5.740355968475342
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 3.6744841575622558,
+      "war_of_the_worlds": 4.01152400970459
+    },
+    "commit": "711f8bc0f29967391389ad14337bb5893e4d0039"
+  },
+  {
+    "session_idx": 2,
+    "session": "frankenstein",
+    "steps": [
+      {
+        "cumulative_step": 501,
+        "loss": 5.138772487640381
+      },
+      {
+        "cumulative_step": 525,
+        "loss": 5.589704513549805
+      },
+      {
+        "cumulative_step": 550,
+        "loss": 4.96296501159668
+      },
+      {
+        "cumulative_step": 575,
+        "loss": 5.536777019500732
+      },
+      {
+        "cumulative_step": 600,
+        "loss": 4.695730209350586
+      },
+      {
+        "cumulative_step": 625,
+        "loss": 4.583937644958496
+      },
+      {
+        "cumulative_step": 650,
+        "loss": 4.7342071533203125
+      },
+      {
+        "cumulative_step": 675,
+        "loss": 4.906565189361572
+      },
+      {
+        "cumulative_step": 700,
+        "loss": 5.163458824157715
+      },
+      {
+        "cumulative_step": 725,
+        "loss": 5.0283355712890625
+      },
+      {
+        "cumulative_step": 750,
+        "loss": 5.01649284362793
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 4.052227544784546,
+      "war_of_the_worlds": 4.079465627670288,
+      "frankenstein": 4.141367959976196
+    },
+    "commit": "ab8bef24319c383e1630b8387519762e70b4a1f5"
+  },
+  {
+    "session_idx": 3,
+    "session": "picture_of_dorian_gray",
+    "steps": [
+      {
+        "cumulative_step": 751,
+        "loss": 4.248983383178711
+      },
+      {
+        "cumulative_step": 775,
+        "loss": 4.57617712020874
+      },
+      {
+        "cumulative_step": 800,
+        "loss": 5.000395774841309
+      },
+      {
+        "cumulative_step": 825,
+        "loss": 5.135635852813721
+      },
+      {
+        "cumulative_step": 850,
+        "loss": 4.541397571563721
+      },
+      {
+        "cumulative_step": 875,
+        "loss": 5.6331706047058105
+      },
+      {
+        "cumulative_step": 900,
+        "loss": 4.673958778381348
+      },
+      {
+        "cumulative_step": 925,
+        "loss": 4.651158809661865
+      },
+      {
+        "cumulative_step": 950,
+        "loss": 4.767334938049316
+      },
+      {
+        "cumulative_step": 975,
+        "loss": 4.914436340332031
+      },
+      {
+        "cumulative_step": 1000,
+        "loss": 5.371638298034668
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 4.141672563552857,
+      "war_of_the_worlds": 4.193345785140991,
+      "frankenstein": 4.121578502655029,
+      "picture_of_dorian_gray": 4.17778902053833
+    },
+    "commit": "b5524fb2df856ffe9e7120f6c42794f0244998f1"
+  },
+  {
+    "session_idx": 4,
+    "session": "sherlock_holmes",
+    "steps": [
+      {
+        "cumulative_step": 1001,
+        "loss": 4.37819766998291
+      },
+      {
+        "cumulative_step": 1025,
+        "loss": 4.9373602867126465
+      },
+      {
+        "cumulative_step": 1050,
+        "loss": 4.852325916290283
+      },
+      {
+        "cumulative_step": 1075,
+        "loss": 4.500655651092529
+      },
+      {
+        "cumulative_step": 1100,
+        "loss": 4.482917308807373
+      },
+      {
+        "cumulative_step": 1125,
+        "loss": 4.698826789855957
+      },
+      {
+        "cumulative_step": 1150,
+        "loss": 4.267979145050049
+      },
+      {
+        "cumulative_step": 1175,
+        "loss": 4.013675212860107
+      },
+      {
+        "cumulative_step": 1200,
+        "loss": 5.174013137817383
+      },
+      {
+        "cumulative_step": 1225,
+        "loss": 4.519018173217773
+      },
+      {
+        "cumulative_step": 1250,
+        "loss": 4.436843395233154
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 4.049338150024414,
+      "war_of_the_worlds": 4.060826778411865,
+      "frankenstein": 4.224643325805664,
+      "picture_of_dorian_gray": 4.215507459640503,
+      "sherlock_holmes": 3.930811882019043
+    },
+    "commit": "7b1b6e146a08adf041fddc2ed65df9acdf9db846"
+  },
+  {
+    "session_idx": 5,
+    "session": "pride_and_prejudice",
+    "steps": [
+      {
+        "cumulative_step": 1251,
+        "loss": 5.254001140594482
+      },
+      {
+        "cumulative_step": 1275,
+        "loss": 4.727349281311035
+      },
+      {
+        "cumulative_step": 1300,
+        "loss": 5.0941481590271
+      },
+      {
+        "cumulative_step": 1325,
+        "loss": 5.125828742980957
+      },
+      {
+        "cumulative_step": 1350,
+        "loss": 5.480774879455566
+      },
+      {
+        "cumulative_step": 1375,
+        "loss": 4.745820999145508
+      },
+      {
+        "cumulative_step": 1400,
+        "loss": 4.509915828704834
+      },
+      {
+        "cumulative_step": 1425,
+        "loss": 4.661991596221924
+      },
+      {
+        "cumulative_step": 1450,
+        "loss": 4.064280986785889
+      },
+      {
+        "cumulative_step": 1475,
+        "loss": 4.766520023345947
+      },
+      {
+        "cumulative_step": 1500,
+        "loss": 5.013911247253418
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 4.071543121337891,
+      "war_of_the_worlds": 4.2191490650177,
+      "frankenstein": 4.105917692184448,
+      "picture_of_dorian_gray": 4.048944759368896,
+      "sherlock_holmes": 4.239475250244141,
+      "pride_and_prejudice": 4.518428230285645
+    },
+    "commit": "c84d67c27143426a02bcafcd52732e0b5185bea5"
+  },
+  {
+    "session_idx": 6,
+    "session": "dracula",
+    "steps": [
+      {
+        "cumulative_step": 1501,
+        "loss": 4.858652591705322
+      },
+      {
+        "cumulative_step": 1525,
+        "loss": 4.985001564025879
+      },
+      {
+        "cumulative_step": 1550,
+        "loss": 5.189381122589111
+      },
+      {
+        "cumulative_step": 1575,
+        "loss": 5.134620666503906
+      },
+      {
+        "cumulative_step": 1600,
+        "loss": 4.5906267166137695
+      },
+      {
+        "cumulative_step": 1625,
+        "loss": 4.560252666473389
+      },
+      {
+        "cumulative_step": 1650,
+        "loss": 4.661040306091309
+      },
+      {
+        "cumulative_step": 1675,
+        "loss": 5.1616082191467285
+      },
+      {
+        "cumulative_step": 1700,
+        "loss": 4.878499984741211
+      },
+      {
+        "cumulative_step": 1725,
+        "loss": 5.1102752685546875
+      },
+      {
+        "cumulative_step": 1750,
+        "loss": 5.2495341300964355
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 4.156503534317016,
+      "war_of_the_worlds": 4.024776029586792,
+      "frankenstein": 4.12123851776123,
+      "picture_of_dorian_gray": 4.1309812545776365,
+      "sherlock_holmes": 4.274990749359131,
+      "pride_and_prejudice": 4.689099979400635,
+      "dracula": 4.263128566741943
+    },
+    "commit": "19ab5c5b325ee14ac4e104d49b1a187070780785"
+  },
+  {
+    "session_idx": 7,
+    "session": "moby_dick",
+    "steps": [
+      {
+        "cumulative_step": 1751,
+        "loss": 4.879328727722168
+      },
+      {
+        "cumulative_step": 1775,
+        "loss": 5.4168195724487305
+      },
+      {
+        "cumulative_step": 1800,
+        "loss": 5.515188694000244
+      },
+      {
+        "cumulative_step": 1825,
+        "loss": 5.313943862915039
+      },
+      {
+        "cumulative_step": 1850,
+        "loss": 4.849248886108398
+      },
+      {
+        "cumulative_step": 1875,
+        "loss": 5.337831020355225
+      },
+      {
+        "cumulative_step": 1900,
+        "loss": 5.364096641540527
+      },
+      {
+        "cumulative_step": 1925,
+        "loss": 4.52540922164917
+      },
+      {
+        "cumulative_step": 1950,
+        "loss": 5.535205364227295
+      },
+      {
+        "cumulative_step": 1975,
+        "loss": 5.493270397186279
+      },
+      {
+        "cumulative_step": 2000,
+        "loss": 5.402585983276367
+      }
+    ],
+    "eval": {
+      "jekyll_and_hyde": 4.0883713722229,
+      "war_of_the_worlds": 3.956470489501953,
+      "frankenstein": 4.546000862121582,
+      "picture_of_dorian_gray": 4.075748491287231,
+      "sherlock_holmes": 4.277828598022461,
+      "pride_and_prejudice": 4.034575986862182,
+      "dracula": 4.260072994232178,
+      "moby_dick": 4.815295600891114
+    },
+    "commit": "fcb627fb9991127effa59944bd7aea6f7a5afef3"
+  }
+]
