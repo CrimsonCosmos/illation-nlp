@@ -96,7 +96,8 @@ def estimate_val_loss(model, val_data, block_size, device, iters=20, batch_size=
     return sum(losses) / len(losses)
 
 
-def run(n_shards, steps, block_size, n_layer, n_head, n_embd, out_dir, log_every=25, eval_every=200, max_val_tokens=2_000_000):
+def run(n_shards, steps, block_size, n_layer, n_head, n_embd, out_dir, log_every=25, eval_every=200,
+        max_val_tokens=2_000_000, max_train_tokens_cap=60_000_000):
     device = get_device()
     print(f"device={device}")
 
@@ -117,7 +118,7 @@ def run(n_shards, steps, block_size, n_layer, n_head, n_embd, out_dir, log_every
     approx_tokens = int(train_shard_bytes / 4.5)  # ~4.5 bytes/token rough estimate for English BPE
     print(f"train shards: {len(shard_paths)-1}, ~{train_shard_bytes/1e6:.1f}MB raw, ~{approx_tokens/1e6:.1f}M tokens estimated")
 
-    max_train_tokens = min(approx_tokens, 60_000_000)  # cap for this run's time budget
+    max_train_tokens = min(approx_tokens, max_train_tokens_cap)
     print(f"tokenizing up to {max_train_tokens/1e6:.1f}M train tokens...")
     t0 = time.time()
     train_data = build_token_tensor(tok, "train", max_train_tokens)
@@ -183,5 +184,7 @@ if __name__ == "__main__":
     ap.add_argument("--n-head", type=int, default=8)
     ap.add_argument("--n-embd", type=int, default=512)
     ap.add_argument("--out", type=str, default=str(HERE / "runs" / "v4_phase1"))
+    ap.add_argument("--max-train-tokens", type=int, default=60_000_000)
     args = ap.parse_args()
-    run(args.n_shards, args.steps, args.block_size, args.n_layer, args.n_head, args.n_embd, args.out)
+    run(args.n_shards, args.steps, args.block_size, args.n_layer, args.n_head, args.n_embd, args.out,
+        max_train_tokens_cap=args.max_train_tokens)
