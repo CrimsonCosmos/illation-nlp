@@ -22,3 +22,7 @@ runs/**/final/
 # logs
 run_both.log
 *.log
+
+# per-user online-adaptation weight state: its own separate git repo (history/rollback
+# for user weights), deliberately NOT tracked inside the code repo -- see user_state.py
+user_states/
