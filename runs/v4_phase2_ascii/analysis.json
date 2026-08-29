@@ -1,0 +1,62 @@
+{
+  "compressibility": {
+    "internal_stream_ratio": 0.8637236084452975,
+    "random_baseline_ratio": 0.8596153846153847,
+    "real_text_ratio": 0.4048076923076923,
+    "n_chars": 1024
+  },
+  "recurrence": {
+    "n_thoughts": 128,
+    "distinct_substrings": 845,
+    "recurring_substrings": 50,
+    "recurrence_rate": 0.11272321428571429,
+    "top_recurring": [
+      [
+        "(u",
+        3
+      ],
+      [
+        "3/",
+        2
+      ],
+      [
+        "vI",
+        2
+      ],
+      [
+        ".w",
+        2
+      ],
+      [
+        "5{",
+        2
+      ],
+      [
+        "%d",
+        2
+      ],
+      [
+        "^U",
+        2
+      ],
+      [
+        "fZ",
+        2
+      ],
+      [
+        "x:",
+        2
+      ],
+      [
+        "b:",
+        2
+      ]
+    ]
+  },
+  "ablation": {
+    "normal_loss": 6.72184419631958,
+    "ablated_loss": 6.720314979553223,
+    "delta": -0.0015292167663574219,
+    "internal_helps": false
+  }
+}

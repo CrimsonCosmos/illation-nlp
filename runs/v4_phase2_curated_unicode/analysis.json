@@ -1,0 +1,21 @@
+{
+  "compressibility": {
+    "internal_stream_ratio": 0.714975845410628,
+    "random_baseline_ratio": 0.7120593692022263,
+    "real_text_ratio": 0.4048076923076923,
+    "n_chars": 1024
+  },
+  "recurrence": {
+    "n_thoughts": 128,
+    "distinct_substrings": 896,
+    "recurring_substrings": 0,
+    "recurrence_rate": 0.0,
+    "top_recurring": []
+  },
+  "ablation": {
+    "normal_loss": 4.627535820007324,
+    "ablated_loss": 4.631495475769043,
+    "delta": 0.00395965576171875,
+    "internal_helps": true
+  }
+}
