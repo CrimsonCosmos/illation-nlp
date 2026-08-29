@@ -21,7 +21,7 @@ def get_device():
     return torch.device("cpu")
 
 
-def load_model(ckpt_path, device, min_seq_len=256):
+def load_model(ckpt_path, device, min_seq_len=256, think_ticks=None):
     ckpt = torch.load(ckpt_path, map_location=device)
     internal_cfg = InternalConfig(**ckpt["internal_cfg"])
     external_cfg = ExternalConfig(**ckpt["external_cfg"])
@@ -29,6 +29,11 @@ def load_model(ckpt_path, device, min_seq_len=256):
     # property) -- override the trained max_seq_len (often small in short smoke runs) so
     # generation isn't artificially capped at the training context length.
     external_cfg.max_seq_len = max(external_cfg.max_seq_len, min_seq_len)
+    # Internal model's own rotary buffer was sized for training's think_ticks
+    # (max_seq_len=think_ticks+4, see phase2_train.py) -- a larger --think-ticks at
+    # generation time needs the same override, or the internal sequence overflows it.
+    if think_ticks is not None:
+        internal_cfg.max_seq_len = max(internal_cfg.max_seq_len, think_ticks + 4)
     model = InterleavedStack(internal_cfg, external_cfg, cross_n_head=4).to(device)
     model.external.load_state_dict(ckpt["external"])
     model.internal.load_state_dict(ckpt["internal"])
@@ -51,7 +56,7 @@ def main():
     args = ap.parse_args()
 
     device = get_device()
-    model, vocab_scheme, default_think_ticks = load_model(args.ckpt, device)
+    model, vocab_scheme, default_think_ticks = load_model(args.ckpt, device, think_ticks=args.think_ticks)
     think_ticks = args.think_ticks if args.think_ticks is not None else default_think_ticks
     print(f"device={device} vocab_scheme={vocab_scheme} think_ticks={think_ticks}")
 
